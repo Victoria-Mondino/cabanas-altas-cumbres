@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Poppins", "Segoe UI", sans-serif;
+
+  --color-bone: #f7f2e7;
+  --color-bone-dim: #efe4cd;
+  --color-ink: #2b2117;
+  --color-ink-soft: #3c2f22;
+  --color-pine: #f1e6cf;
+  --color-pine-deep: #ddc9a3;
+  --color-sage: #c2ac86;
+  --color-sage-light: #ddccac;
+  --color-forest: #5c4630;
+  --color-gold: #a9814c;
+  --color-gold-soft: #c9a26a;
+
+  --shadow-soft: 0 30px 80px -24px rgb(0 0 0 / 0.5);
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 46s linear infinite;
+}
+
+.marquee-track-reverse {
+  animation-name: marquee-right;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none;
+}
