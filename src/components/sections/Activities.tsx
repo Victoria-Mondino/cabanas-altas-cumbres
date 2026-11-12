@@ -21,7 +21,7 @@ export function Activities() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Actividades cercanas
             </p>
-            <WriteReveal as="h2" className="mt-4 block max-w-md font-display text-4xl italic leading-[1.1] text-ink md:text-5xl">
+            <WriteReveal as="h2" className="mt-4 block max-w-md font-display text-4xl leading-[1.1] text-ink md:text-5xl">
               La sierra tiene más para dar
             </WriteReveal>
           </GsapReveal>
@@ -67,7 +67,7 @@ export function Activities() {
                   {activity.place} · {activity.distance}
                 </span>
               </div>
-              <WriteReveal as="h3" className="mt-2 block font-display text-2xl italic text-ink">
+              <WriteReveal as="h3" className="mt-2 block font-display text-2xl text-ink">
                 {activity.title}
               </WriteReveal>
               <p className="mt-2 text-sm leading-relaxed text-ink/60">{activity.description}</p>

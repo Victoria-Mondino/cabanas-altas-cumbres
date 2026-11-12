@@ -9,7 +9,7 @@ export function Location() {
     <section id="ubicacion" className="bg-bone-dim py-28 lg:py-36">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-10">
         <div>
-          <WriteReveal as="h2" className="block max-w-sm font-display text-5xl italic leading-[1.1] text-ink md:text-6xl">
+          <WriteReveal as="h2" className="block max-w-sm font-display text-5xl leading-[1.1] text-ink md:text-6xl">
             El camino de las <span className="text-gold">Altas Cumbres</span>
           </WriteReveal>
 

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Cormorant", "Iowan Old Style", Georgia, serif;
-  --font-sans: "Montserrat", "Segoe UI", sans-serif;
+  --font-display: "National Park", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Archivo", "Segoe UI", sans-serif;
 
   --color-bone: #f7f2e7;
   --color-bone-dim: #efe4cd;
@@ -34,7 +34,7 @@ body {
   background-color: var(--color-bone);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
@@ -46,6 +46,7 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+  font-weight: 600;
 }
 
 .marquee-mask {

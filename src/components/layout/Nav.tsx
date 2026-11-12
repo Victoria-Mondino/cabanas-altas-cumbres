@@ -24,7 +24,7 @@ export function Nav() {
         <a href="#top" className="flex items-center gap-2.5">
           <Logo dark={solid} />
           <span
-            className={`hidden font-display text-lg italic sm:inline ${solid ? 'text-ink' : 'text-bone'}`}
+            className={`hidden font-display text-lg sm:inline ${solid ? 'text-ink' : 'text-bone'}`}
           >
             Altas Cumbres
           </span>
@@ -74,7 +74,7 @@ export function Nav() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Logo dark />
-                <span className="font-display text-2xl italic text-ink">Altas Cumbres</span>
+                <span className="font-display text-2xl text-ink">Altas Cumbres</span>
               </div>
               <button type="button" aria-label="Cerrar menú" className="text-ink" onClick={() => setOpen(false)}>
                 <X size={26} />
@@ -87,7 +87,7 @@ export function Nav() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="font-display text-4xl italic text-ink"
+                  className="font-display text-4xl text-ink"
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.08 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

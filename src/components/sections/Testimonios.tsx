@@ -89,7 +89,7 @@ export function Testimonios() {
 
         <WriteReveal
           as="h2"
-          className="mt-8 block font-display text-4xl italic leading-tight tracking-tight text-ink md:text-5xl lg:text-[3.5rem]"
+          className="mt-8 block font-display text-4xl leading-tight tracking-tight text-ink md:text-5xl lg:text-[3.5rem]"
         >
           Lo que dicen nuestros huéspedes
         </WriteReveal>

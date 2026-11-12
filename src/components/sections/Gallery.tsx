@@ -17,7 +17,7 @@ export function Gallery() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <GsapReveal className="mx-auto max-w-xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Galería</p>
-          <WriteReveal as="h2" className="mt-4 block font-display text-4xl italic leading-[1.1] text-ink md:text-5xl">
+          <WriteReveal as="h2" className="mt-4 block font-display text-4xl leading-[1.1] text-ink md:text-5xl">
             El paisaje alrededor
           </WriteReveal>
         </GsapReveal>

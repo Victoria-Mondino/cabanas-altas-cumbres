@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3">
               <Logo dark />
-              <span className="font-display text-xl italic text-ink">Altas Cumbres</span>
+              <span className="font-display text-xl text-ink">Altas Cumbres</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink/60">
               Cabañas de montaña sobre el Camino de las Altas Cumbres, en las Sierras de Córdoba.

@@ -64,7 +64,7 @@ export function About() {
             <span className="inline-flex items-center rounded-full border border-ink/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink/70">
               Sobre el lugar
             </span>
-            <WriteReveal as="h2" className="mt-5 block font-display text-4xl italic leading-[1.1] text-ink md:text-5xl">
+            <WriteReveal as="h2" className="mt-5 block font-display text-4xl leading-[1.1] text-ink md:text-5xl">
               Piedra, madera y silencio.
             </WriteReveal>
             <span className="mx-auto mt-5 block h-px w-16 bg-ink/25" aria-hidden="true" />
@@ -77,7 +77,7 @@ export function About() {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-8">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">{panel.kicker}</p>
-                  <p className="mt-1 font-display text-3xl italic leading-none text-bone">{panel.title}</p>
+                  <p className="mt-1 font-display text-3xl leading-none text-bone">{panel.title}</p>
                   <p className="mt-3 max-w-md text-sm leading-relaxed text-bone/75">{panel.text}</p>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export function About() {
               <span className="inline-flex items-center rounded-full border border-bone/30 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-bone/85">
                 Sobre el lugar
               </span>
-              <p className="mx-auto mt-5 max-w-xl font-display text-4xl italic leading-[1.1] text-bone md:text-5xl">
+              <p className="mx-auto mt-5 max-w-xl font-display text-4xl leading-[1.1] text-bone md:text-5xl">
                 Piedra, madera y silencio.
               </p>
             </div>
@@ -121,7 +121,7 @@ export function About() {
                 ref={(el) => {
                   titleRefs.current[i] = el
                 }}
-                className="mt-2 block max-w-lg font-display text-4xl italic leading-[1.05] text-bone md:text-5xl"
+                className="mt-2 block max-w-lg font-display text-4xl leading-[1.05] text-bone md:text-5xl"
               >
                 {panel.title}
               </p>

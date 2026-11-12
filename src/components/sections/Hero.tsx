@@ -66,13 +66,13 @@ export function Hero() {
 
           <WriteReveal
             as="h1"
-            className="mt-6 block max-w-2xl font-sans text-4xl font-light leading-[1.12] text-bone sm:text-5xl lg:text-[3.4rem]"
+            className="mt-6 block max-w-2xl font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[3.4rem]"
           >
             {heroLayers.headline}
           </WriteReveal>
 
           <GsapReveal delay={0.18}>
-            <p className="mt-5 max-w-md text-[15px] font-light leading-relaxed text-bone/75">
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-bone/80">
               {heroLayers.blurb}
             </p>
           </GsapReveal>

@@ -17,7 +17,7 @@ const ICONS: Record<string, ComponentType<IconProps>> = {
   PawPrint,
 }
 
-const CABIN_TITLE_CLASS = 'cabin-title mt-1 block whitespace-nowrap font-display text-3xl italic leading-none text-ink lg:text-4xl'
+const CABIN_TITLE_CLASS = 'cabin-title mt-1 block whitespace-nowrap font-display text-3xl leading-none text-ink lg:text-4xl'
 
 function CabinCard({ cabin, titleRef }: { cabin: (typeof cabins)[number]; titleRef?: (el: HTMLParagraphElement | null) => void }) {
   const Icon = ICONS[cabin.icon]
@@ -120,7 +120,7 @@ export function Cabanas() {
             <span className="inline-flex items-center rounded-full border border-ink/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink/70">
               Cabañas
             </span>
-            <WriteReveal as="h2" className="mt-5 block font-display text-4xl italic leading-[1.1] text-ink md:text-5xl">
+            <WriteReveal as="h2" className="mt-5 block font-display text-4xl leading-[1.1] text-ink md:text-5xl">
               Cuatro formas de desconectar
             </WriteReveal>
             <span className="mx-auto mt-5 block h-px w-16 bg-ink/25" aria-hidden="true" />
@@ -155,7 +155,7 @@ export function Cabanas() {
           <span className="inline-flex items-center rounded-full border border-ink/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink/70">
             Cabañas
           </span>
-          <WriteReveal as="h2" className="mt-5 block font-display text-4xl italic leading-[1.1] text-ink md:text-5xl">
+          <WriteReveal as="h2" className="mt-5 block font-display text-4xl leading-[1.1] text-ink md:text-5xl">
             Cuatro formas de desconectar
           </WriteReveal>
           <span className="mx-auto mt-5 block h-px w-16 bg-ink/25" aria-hidden="true" />

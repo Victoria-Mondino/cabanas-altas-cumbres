@@ -52,7 +52,7 @@ export function ReserveCTA() {
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/40" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center lg:px-10">
-        <WriteReveal as="h2" className="block font-display text-5xl italic leading-[1.1] text-bone md:text-6xl">
+        <WriteReveal as="h2" className="block font-display text-5xl leading-[1.1] text-bone md:text-6xl">
           Tu próxima escapada <span className="text-gold">te espera</span>
         </WriteReveal>
 
