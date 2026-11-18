@@ -9,7 +9,8 @@ import { heroLayers, stats } from '../../data/content'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const HERO_VIDEO = '/12438510_3840_2160_24fps.mp4'
+const HERO_VIDEO = '/hero-drone.mp4'
+const HERO_POSTER = '/hero-drone-poster.jpg'
 const AVATAR_BG = ['bg-forest', 'bg-gold', 'bg-ink-soft', 'bg-gold-soft'] as const
 const AVATAR_INITIALS = ['ML', 'NR', 'JG', 'RA']
 
@@ -49,7 +50,8 @@ export function Hero() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster={HERO_POSTER}
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover will-change-transform"
         src={HERO_VIDEO}
