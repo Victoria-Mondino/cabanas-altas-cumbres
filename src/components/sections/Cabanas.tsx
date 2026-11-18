@@ -11,9 +11,7 @@ import { iconFor } from '../ui/icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const CABIN_TITLE_CLASS = 'cabin-title mt-1 block whitespace-nowrap font-display text-3xl leading-none text-ink lg:text-4xl'
-
-function CabinCard({ cabin, titleRef }: { cabin: Cabin; titleRef?: (el: HTMLParagraphElement | null) => void }) {
+function CabinCard({ cabin }: { cabin: Cabin }) {
   const Icon = iconFor(cabin.icon)
   const to = `/cabanas/${cabin.id}`
   return (
@@ -29,33 +27,23 @@ function CabinCard({ cabin, titleRef }: { cabin: Cabin; titleRef?: (el: HTMLPara
         <img
           src={cabin.image.src}
           alt={cabin.image.alt}
-          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04] lg:max-h-[34vh]"
+          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04] lg:max-h-[30vh]"
           loading="lazy"
           draggable={false}
         />
       </Link>
 
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div className="min-w-0">
-          <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
-            <Icon size={13} weight="light" />
-            {cabin.capacity}
-          </p>
-          {titleRef ? (
-            <p ref={titleRef} className={CABIN_TITLE_CLASS}>
-              {cabin.name}
-            </p>
-          ) : (
-            <WriteReveal as="p" className={CABIN_TITLE_CLASS}>
-              {cabin.name}
-            </WriteReveal>
-          )}
-        </div>
-        <p className="max-w-xs text-sm leading-relaxed text-ink/60 sm:text-right">{cabin.description}</p>
+      <div className="mt-5">
+        <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+          <Icon size={13} weight="light" />
+          {cabin.capacity}
+        </p>
+        <h3 className="mt-2 font-display text-3xl leading-tight text-ink lg:text-4xl">{cabin.name}</h3>
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-ink/65">{cabin.description}</p>
       </div>
 
       <ul className="mt-4 flex flex-wrap gap-2">
-        {cabin.highlights.map((h) => (
+        {cabin.highlights.slice(0, 3).map((h) => (
           <li
             key={h}
             className="rounded-full border border-ink/12 px-3 py-1 text-[11px] font-medium text-ink/70"
@@ -81,7 +69,6 @@ export function Cabanas() {
   const sectionRef = useRef<HTMLElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const titleRefs = useRef<(HTMLParagraphElement | null)[]>([])
   const reduce = useReducedMotion()
   const [fancy, setFancy] = useState(false)
 
@@ -102,7 +89,7 @@ export function Cabanas() {
       const track = trackRef.current!
       const maxScroll = () => track.scrollWidth - wrap.clientWidth
 
-      const scrollTween = gsap.to(track, {
+      gsap.to(track, {
         x: () => -maxScroll(),
         ease: 'none',
         scrollTrigger: {
@@ -113,22 +100,6 @@ export function Cabanas() {
           scrub: 1,
           invalidateOnRefresh: true,
         },
-      })
-
-      titleRefs.current.forEach((title) => {
-        if (!title) return
-        gsap.set(title, { clipPath: 'inset(0 100% 0 0)' })
-        gsap.to(title, {
-          clipPath: 'inset(0 0% 0 0)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: title,
-            containerAnimation: scrollTween,
-            start: 'left 82%',
-            end: 'left 28%',
-            scrub: true,
-          },
-        })
       })
     }, sectionRef)
 
@@ -151,19 +122,9 @@ export function Cabanas() {
 
           <div ref={wrapRef} className="w-full overflow-hidden">
             <div ref={trackRef} className="flex w-max gap-8 px-6 will-change-transform lg:gap-12 lg:px-10">
-              {cabins.map((cabin, i) => (
-                <CabinCard
-                  key={cabin.id}
-                  cabin={cabin}
-                  titleRef={(el) => {
-                    titleRefs.current[i] = el
-                  }}
-                />
+              {cabins.map((cabin) => (
+                <CabinCard key={cabin.id} cabin={cabin} />
               ))}
-              {/* Trailing spacer: without it the last card can't travel far enough
-                  left for its own write-in trigger ('left 28%') to ever be reached —
-                  the track runs out of scroll room right as the last card arrives. */}
-              <div className="w-[38vw] shrink-0" aria-hidden="true" />
             </div>
           </div>
         </div>
