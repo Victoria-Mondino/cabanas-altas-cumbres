@@ -1,5 +1,6 @@
 import { InstagramLogo } from '@phosphor-icons/react'
 import { Logo } from './Logo'
+import { SectionLink } from '../ui/SectionLink'
 import { nav, contact, location } from '../../data/content'
 
 export function Footer() {
@@ -22,9 +23,9 @@ export function Footer() {
             <ul className="mt-4 flex flex-col gap-3">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="text-sm transition-colors hover:text-gold">
+                  <SectionLink href={item.href} className="text-sm transition-colors hover:text-gold">
                     {item.label}
-                  </a>
+                  </SectionLink>
                 </li>
               ))}
             </ul>

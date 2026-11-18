@@ -9,8 +9,8 @@ import { heroLayers, stats } from '../../data/content'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const HERO_VIDEO = '/hero-drone.mp4'
-const HERO_POSTER = '/hero-drone-poster.jpg'
+const HERO_VIDEO = '/hero-valley.mp4'
+const HERO_POSTER = '/hero-valley-poster.jpg'
 const AVATAR_BG = ['bg-forest', 'bg-gold', 'bg-ink-soft', 'bg-gold-soft'] as const
 const AVATAR_INITIALS = ['ML', 'NR', 'JG', 'RA']
 
@@ -68,6 +68,7 @@ export function Hero() {
 
           <WriteReveal
             as="h1"
+            mode="play"
             className="mt-6 block max-w-2xl font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[3.4rem]"
           >
             {heroLayers.headline}

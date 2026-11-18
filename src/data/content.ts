@@ -1,4 +1,4 @@
-import { images } from './images'
+import { cabinPhotos, images, type SiteImage } from './images'
 
 export const nav = [
   { label: 'Sobre', href: '#sobre' },
@@ -58,49 +58,163 @@ export const aboutPanels = [
   },
 ]
 
+export type CabinIcon = 'Mountains' | 'Fire' | 'Bathtub' | 'PawPrint'
+
+export interface CabinAmenity {
+  icon: string
+  label: string
+}
+
+export interface Cabin {
+  id: string
+  name: string
+  tagline: string
+  capacity: string
+  icon: CabinIcon
+  guests: number
+  bedrooms: number
+  bathrooms: number
+  area: number
+  /** Foto de portada: primera de la galería. */
+  image: SiteImage
+  /** 6 fotos: exteriores, dormitorio, living, baño y cocina/deck. */
+  gallery: SiteImage[]
+  description: string
+  story: string[]
+  /** Los 3-4 puntos fuertes que se muestran en la tarjeta de la home. */
+  highlights: string[]
+  amenities: CabinAmenity[]
+}
+
 /**
- * Contenido de referencia (nombres, fotos e descripciones de cabañas
- * inventados) hasta que el cliente entregue la información real de cada
- * unidad.
+ * Contenido de referencia (nombres, medidas, descripciones y fotos de
+ * cabañas inventados / de stock) hasta que el cliente entregue la
+ * información real de cada unidad.
  */
-export const cabins = [
+export const cabins: Cabin[] = [
   {
     id: 'condor',
     name: 'Cabaña Cóndor',
+    tagline: 'Ventanales al valle, pensada para dos',
     capacity: '2 huéspedes',
     icon: 'Mountains',
-    image: images.sierraPanorama,
+    guests: 2,
+    bedrooms: 1,
+    bathrooms: 1,
+    area: 42,
+    image: cabinPhotos.condor[0],
+    gallery: [...cabinPhotos.condor],
     description:
       'Ventanales de piso a techo con vista abierta a la Pampa de Achala. La más buscada por parejas.',
+    story: [
+      'La Cóndor es la cabaña más pequeña y la más abierta al paisaje: un solo ambiente luminoso con cama king frente a un ventanal de piso a techo, para despertar con la sierra entera enfrente.',
+      'Tiene hogar a leña, bañera exenta con vista y una galería chica donde tomar mate al atardecer. Es la elegida para escapadas de a dos, aniversarios y lunas de miel.',
+    ],
+    highlights: ['Cama king con vista a la sierra', 'Bañera exenta', 'Hogar a leña', 'Galería privada'],
+    amenities: [
+      { icon: 'Mountains', label: 'Ventanales con vista al valle' },
+      { icon: 'Bed', label: 'Cama king, ropa de cama de algodón' },
+      { icon: 'Bathtub', label: 'Bañera exenta' },
+      { icon: 'Fire', label: 'Hogar a leña' },
+      { icon: 'Coffee', label: 'Kitchenette con cafetera' },
+      { icon: 'WifiHigh', label: 'Wifi en la cabaña' },
+      { icon: 'Car', label: 'Cochera junto a la puerta' },
+      { icon: 'Star', label: 'Cielo despejado para mirar estrellas' },
+    ],
   },
   {
     id: 'achala',
     name: 'Cabaña Achala',
+    tagline: 'Hogar a leña y galería hacia el bosque',
     capacity: '4 huéspedes',
     icon: 'Fire',
-    image: images.cumbrecitaHouse,
+    guests: 4,
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 68,
+    image: cabinPhotos.achala[0],
+    gallery: [...cabinPhotos.achala],
     description:
       'Living con hogar a leña y galería techada hacia el bosque serrano. Ideal para familias.',
+    story: [
+      'La Achala está hecha para compartir: un living amplio con hogar a leña en el centro, cocina completa abierta al comedor y una galería techada que mira al bosque serrano.',
+      'Dos dormitorios (uno matrimonial y otro con dos camas) y un baño completo. Los chicos tienen espacio para jugar afuera y los grandes un lugar donde quedarse hasta tarde.',
+    ],
+    highlights: ['Hogar a leña en el living', 'Cocina completa', 'Galería techada', '2 dormitorios'],
+    amenities: [
+      { icon: 'Fire', label: 'Hogar a leña, leña incluida' },
+      { icon: 'CookingPot', label: 'Cocina equipada con horno' },
+      { icon: 'Bed', label: '2 dormitorios, 1 matrimonial y 1 doble' },
+      { icon: 'Tree', label: 'Galería techada hacia el bosque' },
+      { icon: 'Bathtub', label: 'Baño completo con bañera' },
+      { icon: 'WifiHigh', label: 'Wifi en la cabaña' },
+      { icon: 'PawPrint', label: 'Pet friendly' },
+      { icon: 'Car', label: 'Estacionamiento privado' },
+    ],
   },
   {
     id: 'yuspe',
     name: 'Cabaña Yuspe',
+    tagline: 'Dos plantas, deck e hidromasaje para grupos',
     capacity: '6 huéspedes',
     icon: 'Bathtub',
-    image: images.riverYuspe,
+    guests: 6,
+    bedrooms: 3,
+    bathrooms: 2,
+    area: 110,
+    image: cabinPhotos.yuspe[0],
+    gallery: [...cabinPhotos.yuspe],
     description:
       'Dos plantas y deck exterior con hidromasaje. La más grande del predio, para grupos.',
+    story: [
+      'La Yuspe es la casa grande del predio: dos plantas de troncos y piedra, tres dormitorios y dos baños, con un deck exterior donde está el hidromasaje mirando a la sierra.',
+      'Pensada para grupos de amigos y familias numerosas: cocina amplia, living doble altura y un asador en el deck para las noches de verano.',
+    ],
+    highlights: ['Deck con hidromasaje', 'Dos plantas', '3 dormitorios y 2 baños', 'Asador y cocina amplia'],
+    amenities: [
+      { icon: 'Bathtub', label: 'Hidromasaje exterior en el deck' },
+      { icon: 'Bed', label: '3 dormitorios, suite en planta alta' },
+      { icon: 'CookingPot', label: 'Cocina grande para grupos' },
+      { icon: 'Campfire', label: 'Asador en el deck' },
+      { icon: 'Fire', label: 'Hogar a leña doble altura' },
+      { icon: 'Drop', label: '2 baños completos' },
+      { icon: 'WifiHigh', label: 'Wifi en la cabaña' },
+      { icon: 'Car', label: 'Cochera para 2 autos' },
+    ],
   },
   {
     id: 'traslasierra',
     name: 'Cabaña Traslasierra',
+    tagline: 'Entre pinos, íntima y pet friendly',
     capacity: '3 huéspedes',
     icon: 'PawPrint',
-    image: images.cumbrecitaStream,
+    guests: 3,
+    bedrooms: 1,
+    bathrooms: 1,
+    area: 52,
+    image: cabinPhotos.traslasierra[0],
+    gallery: [...cabinPhotos.traslasierra],
     description:
       'La más íntima, entre pinos, con estufa a leña, balcón al valle y espacio pet friendly.',
+    story: [
+      'La Traslasierra está escondida entre los pinos, un poco más arriba que el resto: la más silenciosa y la que mejor mira al valle de Traslasierra desde su balcón.',
+      'Un dormitorio con cama matrimonial más un sofá cama, estufa a leña y espacio pensado para ir con tu perro. De noche, el cielo se ve sin una sola luz alrededor.',
+    ],
+    highlights: ['Balcón al valle', 'Estufa a leña', 'Pet friendly', 'Entre pinos'],
+    amenities: [
+      { icon: 'Tree', label: 'Rodeada de pinos' },
+      { icon: 'Binoculars', label: 'Balcón con vista al valle' },
+      { icon: 'Fire', label: 'Estufa a leña' },
+      { icon: 'PawPrint', label: 'Pet friendly, con espacio para tu perro' },
+      { icon: 'Bed', label: 'Cama matrimonial y sofá cama' },
+      { icon: 'Coffee', label: 'Kitchenette equipada' },
+      { icon: 'WifiHigh', label: 'Wifi en la cabaña' },
+      { icon: 'Star', label: 'Cielo sin contaminación lumínica' },
+    ],
   },
 ]
+
+export const getCabin = (id: string | undefined) => cabins.find((c) => c.id === id)
 
 /**
  * Testimonios de referencia (nombres y citas ficticias) hasta contar con
@@ -262,3 +376,10 @@ export const contact = {
   email: 'reservas@altascumbrescabanas.com.ar',
   instagram: 'https://instagram.com',
 }
+
+/** Datos de la estadía de referencia (a confirmar con el cliente). */
+export const stayInfo = [
+  { label: 'Check-in', value: 'Desde las 14:00' },
+  { label: 'Check-out', value: 'Hasta las 10:00' },
+  { label: 'Estadía mínima', value: '2 noches' },
+]

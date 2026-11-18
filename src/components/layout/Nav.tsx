@@ -4,6 +4,9 @@ import { List, X } from '@phosphor-icons/react'
 import { nav, RESERVE_LABEL } from '../../data/content'
 import { Logo } from './Logo'
 import { Button } from '../ui/Button'
+import { SectionLink } from '../ui/SectionLink'
+
+const MotionSectionLink = motion.create(SectionLink)
 
 export function Nav() {
   const [solid, setSolid] = useState(false)
@@ -21,18 +24,18 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
-        <a href="#top" className="flex items-center gap-2.5">
+        <SectionLink href="#top" className="flex items-center gap-2.5">
           <Logo dark={solid} />
           <span
             className={`hidden font-display text-lg sm:inline ${solid ? 'text-ink' : 'text-bone'}`}
           >
             Altas Cumbres
           </span>
-        </a>
+        </SectionLink>
 
         <nav className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => (
-            <a
+            <SectionLink
               key={item.href}
               href={item.href}
               data-cursor="link"
@@ -42,7 +45,7 @@ export function Nav() {
             >
               {item.label}
               <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-            </a>
+            </SectionLink>
           ))}
         </nav>
 
@@ -83,7 +86,7 @@ export function Nav() {
 
             <div className="mt-16 flex flex-col gap-7">
               {nav.map((item, i) => (
-                <motion.a
+                <MotionSectionLink
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
@@ -93,7 +96,7 @@ export function Nav() {
                   transition={{ delay: 0.08 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {item.label}
-                </motion.a>
+                </MotionSectionLink>
               ))}
             </div>
 

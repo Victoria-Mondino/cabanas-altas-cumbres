@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -15,7 +15,9 @@ export function About() {
   const reduce = useReducedMotion()
   const count = aboutPanels.length
 
-  useEffect(() => {
+  // useLayoutEffect: el cleanup (ctx.revert) debe correr ANTES de que React quite
+  // el DOM, o el pin-spacer de GSAP rompe el removeChild al cambiar de ruta.
+  useLayoutEffect(() => {
     if (reduce || !sectionRef.current) return
 
     const ctx = gsap.context(() => {

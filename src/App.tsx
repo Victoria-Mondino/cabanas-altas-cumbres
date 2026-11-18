@@ -1,31 +1,26 @@
+import { Route, Routes } from 'react-router-dom'
 import { Nav } from './components/layout/Nav'
 import { Footer } from './components/layout/Footer'
 import { Grain } from './components/ui/Grain'
-import { Hero } from './components/sections/Hero'
-import { About } from './components/sections/About'
-import { Cabanas } from './components/sections/Cabanas'
-import { Gallery } from './components/sections/Gallery'
-import { Location } from './components/sections/Location'
-import { Activities } from './components/sections/Activities'
-import { Testimonios } from './components/sections/Testimonios'
-import { ReserveCTA } from './components/sections/ReserveCTA'
 import { CustomCursor } from './components/ui/CustomCursor'
+import { ScrollManager } from './components/ui/ScrollManager'
+import { HomePage } from './pages/HomePage'
+import { CabinPage } from './pages/CabinPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 function App() {
   return (
     <div className="min-h-dvh bg-bone">
       <CustomCursor />
       <Grain />
+      <ScrollManager />
       <Nav />
       <main>
-        <Hero />
-        <About />
-        <Cabanas />
-        <Gallery />
-        <Location />
-        <Activities />
-        <Testimonios />
-        <ReserveCTA />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cabanas/:id" element={<CabinPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </main>
       <Footer />
     </div>

@@ -1,37 +1,39 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Bathtub, Fire, Mountains, PawPrint, type IconProps } from '@phosphor-icons/react'
-import type { ComponentType } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from '@phosphor-icons/react'
 import { useReducedMotion } from 'motion/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { cabins } from '../../data/content'
+import { cabins, type Cabin } from '../../data/content'
 import { GsapReveal, GsapRevealGroup } from '../ui/GsapReveal'
 import { WriteReveal } from '../ui/WriteReveal'
+import { iconFor } from '../ui/icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const ICONS: Record<string, ComponentType<IconProps>> = {
-  Mountains,
-  Fire,
-  Bathtub,
-  PawPrint,
-}
-
 const CABIN_TITLE_CLASS = 'cabin-title mt-1 block whitespace-nowrap font-display text-3xl leading-none text-ink lg:text-4xl'
 
-function CabinCard({ cabin, titleRef }: { cabin: (typeof cabins)[number]; titleRef?: (el: HTMLParagraphElement | null) => void }) {
-  const Icon = ICONS[cabin.icon]
+function CabinCard({ cabin, titleRef }: { cabin: Cabin; titleRef?: (el: HTMLParagraphElement | null) => void }) {
+  const Icon = iconFor(cabin.icon)
+  const to = `/cabanas/${cabin.id}`
   return (
-    <div className="cabin-card w-[82vw] shrink-0 sm:w-[58vw] lg:w-[40vw]">
-      <div className="overflow-hidden rounded-[1.75rem] border border-ink/10">
+    <div className="cabin-card w-[82vw] shrink-0 sm:w-[58vw] lg:w-[34vw]">
+      <Link
+        to={to}
+        data-cursor="view"
+        data-cursor-label="Ver"
+        aria-label={`Ver ${cabin.name}`}
+        draggable={false}
+        className="block overflow-hidden rounded-[1.75rem] border border-ink/10"
+      >
         <img
           src={cabin.image.src}
           alt={cabin.image.alt}
-          className="aspect-[4/3] w-full object-cover"
+          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04] lg:max-h-[34vh]"
           loading="lazy"
           draggable={false}
         />
-      </div>
+      </Link>
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
@@ -51,6 +53,26 @@ function CabinCard({ cabin, titleRef }: { cabin: (typeof cabins)[number]; titleR
         </div>
         <p className="max-w-xs text-sm leading-relaxed text-ink/60 sm:text-right">{cabin.description}</p>
       </div>
+
+      <ul className="mt-4 flex flex-wrap gap-2">
+        {cabin.highlights.map((h) => (
+          <li
+            key={h}
+            className="rounded-full border border-ink/12 px-3 py-1 text-[11px] font-medium text-ink/70"
+          >
+            {h}
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        to={to}
+        data-cursor="link"
+        className="group mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:text-gold"
+      >
+        Ver la cabaña
+        <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+      </Link>
     </div>
   )
 }
@@ -71,7 +93,8 @@ export function Cabanas() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  useEffect(() => {
+  // Ver nota en About.tsx: el pin de GSAP se limpia en layout-effect cleanup.
+  useLayoutEffect(() => {
     if (reduce || !fancy || !sectionRef.current || !wrapRef.current || !trackRef.current) return
 
     const ctx = gsap.context(() => {
@@ -115,7 +138,7 @@ export function Cabanas() {
   if (fancy) {
     return (
       <section id="cabanas" ref={sectionRef} className="relative h-screen overflow-hidden bg-pine">
-        <div className="flex h-full flex-col justify-center gap-10 py-16">
+        <div className="flex h-full flex-col justify-center gap-8 py-12">
           <GsapReveal className="mx-auto max-w-xl px-6 text-center">
             <span className="inline-flex items-center rounded-full border border-ink/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink/70">
               Cabañas

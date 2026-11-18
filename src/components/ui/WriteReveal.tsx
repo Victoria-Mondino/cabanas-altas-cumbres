@@ -10,6 +10,8 @@ interface WriteRevealProps {
   children: ReactNode
   as?: ElementType
   className?: string
+  /** 'scrub' (default): se escribe según el scroll. 'play': se escribe sola una vez al entrar. */
+  mode?: 'scrub' | 'play'
 }
 
 /**
@@ -17,7 +19,7 @@ interface WriteRevealProps {
  * away left-to-right, scrubbed to scroll position, so headings look like
  * they're "being written" as the reader scrolls them into view.
  */
-export function WriteReveal({ children, as: Tag = 'span', className = '' }: WriteRevealProps) {
+export function WriteReveal({ children, as: Tag = 'span', className = '', mode = 'scrub' }: WriteRevealProps) {
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
 
@@ -28,21 +30,28 @@ export function WriteReveal({ children, as: Tag = 'span', className = '' }: Writ
       gsap.fromTo(
         ref.current,
         { clipPath: 'inset(0 100% 0 0)' },
-        {
-          clipPath: 'inset(0 0% 0 0)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: ref.current,
-            start: 'top 92%',
-            end: 'top 55%',
-            scrub: 0.4,
-          },
-        },
+        mode === 'play'
+          ? {
+              clipPath: 'inset(0 0% 0 0)',
+              duration: 1.2,
+              ease: 'power3.out',
+              scrollTrigger: { trigger: ref.current, start: 'top 98%', once: true },
+            }
+          : {
+              clipPath: 'inset(0 0% 0 0)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: ref.current,
+                start: 'top 92%',
+                end: 'top 55%',
+                scrub: 0.4,
+              },
+            },
       )
     }, ref)
 
     return () => ctx.revert()
-  }, [reduce])
+  }, [reduce, mode])
 
   return (
     <Tag ref={ref as Ref<HTMLElement>} className={className}>
